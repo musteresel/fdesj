@@ -1,0 +1,21 @@
+plugins {
+  id 'jvm-component'
+  id 'java-lang'
+  id 'junit-test-suite'
+}
+
+model {
+  components {
+    fdesj(JvmLibrarySpec)
+  }
+  testSuites {
+    unit(JUnitTestSuiteSpec) {
+      jUnitVersion '4.12'
+      testing $.components.fdesj
+    }
+  }
+}
+
+repositories {
+  mavenCentral()
+}
