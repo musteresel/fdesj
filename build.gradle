@@ -14,6 +14,12 @@ model {
       testing $.components.fdesj
     }
   }
+  tasks {
+    javadoc(Javadoc) {
+      source = "src/fdesj/java"
+      destinationDir = file("build/javadoc")
+    }
+  }
 }
 
 repositories {
