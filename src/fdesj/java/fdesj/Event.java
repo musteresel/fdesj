@@ -1,6 +1,8 @@
 package fdesj;
 
 
-public interface Event
-{
+/**
+ * An event in the simulation.
+ */
+public interface Event {
 }
