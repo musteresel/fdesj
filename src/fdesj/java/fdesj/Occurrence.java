@@ -29,10 +29,12 @@ public final class Occurrence {
    *
    * @param time Time the event occurs.
    * @param event Event which occurs.
+   * @throws NullPointerException When time or event is null.
    */
   public Occurrence(final Time time, final Event event) {
-    this.time = time;
-    this.event = event;
+    this.time = Objects.requireNonNull(time, "time must not be null");
+    this.event = Objects.requireNonNull(event,
+                                        "event must not be null");
   }
 
 
