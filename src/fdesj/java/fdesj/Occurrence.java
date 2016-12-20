@@ -1,6 +1,9 @@
 package fdesj;
 
 
+import java.util.Objects;
+
+
 /**
  * An occurrence of an event at some time.
  *
@@ -30,5 +33,39 @@ public final class Occurrence {
   public Occurrence(final Time time, final Event event) {
     this.time = time;
     this.event = event;
+  }
+
+
+  /**
+   * Equality is defined by the equality of both the event and the
+   * time.
+   *
+   * @param object Object to check for equality to this.
+   * @return True if the object is an Occurrence with an equal time
+   * and event.
+   */
+  @Override
+  public boolean equals(final Object object) {
+    if (object == this) {
+      return true;
+    }
+    if (! (object instanceof Occurrence)) {
+      return false;
+    }
+    assert object != null; // Checked by the instanceof above
+    final Occurrence other = (Occurrence) object;
+    return time.equals(other.time)
+      && event.equals(other.event);
+  }
+
+
+  /**
+   * Compute a hash code from the hash code of the time and event.
+   *
+   * @return hash code for this Occurrence.
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(time, event);
   }
 }
