@@ -7,7 +7,7 @@ package fdesj;
  * Note that for the purpose of this software, time is discrete, there
  * is a smallest step with which time advances.
  */
-public final class Time {
+public final class Time implements Comparable<Time> {
   /**
    * Absolute time value, measured from begin of simulation.
    */
@@ -34,6 +34,20 @@ public final class Time {
    */
   public long getAbsoluteTime() {
     return absoluteValue;
+  }
+
+
+  /**
+   * Compare two times, using "earlier" as the order relation.
+   *
+   * @param other The Time to compare against.
+   * @return A value less than 0 if this time is "earlier" than the
+   * other time, 0 if neither is "earlier" than the other and a value
+   * greater than 0 otherwise.
+   */
+  @Override
+  public int compareTo(Time other) {
+    return Long.compare(absoluteValue, other.absoluteValue);
   }
 
 
