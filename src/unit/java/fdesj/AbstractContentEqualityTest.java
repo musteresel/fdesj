@@ -59,4 +59,21 @@ public abstract class AbstractContentEqualityTest {
     assertEquals("Two C instances should be equal",
                  createNewInstanceC(), createNewInstanceC());
   }
+
+
+  /**
+   * Instances of the same "kind" should have the same hash code.
+   */
+  @Test
+  public void SameShouldHaveSameHashCode() {
+    assertEquals("Two A instances should have same hash code",
+                 createNewInstanceA().hashCode(),
+                 createNewInstanceA().hashCode());
+    assertEquals("Two B instances should have same hash code",
+                 createNewInstanceB().hashCode(),
+                 createNewInstanceB().hashCode());
+    assertEquals("Two B instances should have same hash code",
+                 createNewInstanceB().hashCode(),
+                 createNewInstanceB().hashCode());
+  }
 }
