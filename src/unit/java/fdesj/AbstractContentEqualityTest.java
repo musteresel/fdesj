@@ -50,8 +50,7 @@ public abstract class AbstractContentEqualityTest {
    * Instances of the same "kind" should be equal.
    */
   @Test
-  public void SameShouldBeEqual()
-  {
+  public void SameShouldBeEqual() {
     assertEquals("Two A instances should be equal",
                  createNewInstanceA(), createNewInstanceA());
     assertEquals("Two B instances should be equal",
