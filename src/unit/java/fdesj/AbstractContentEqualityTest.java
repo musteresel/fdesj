@@ -3,6 +3,7 @@ package fdesj;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 
 /**
@@ -74,5 +75,28 @@ public abstract class AbstractContentEqualityTest {
     assertEquals("Two B instances should have same hash code",
                  createNewInstanceB().hashCode(),
                  createNewInstanceB().hashCode());
+  }
+
+
+  /**
+   * Instances of different "kinds" should not be equal.
+   */
+  @Test
+  public void DifferentShouldNotBeEqual() {
+    final Object a = createNewInstanceA();
+    final Object b = createNewInstanceB();
+    final Object c = createNewInstanceC();
+    assertFalse("An A and a B instance should not be equal",
+                a.equals(b));
+    assertFalse("An A and a C instance should not be equal",
+                a.equals(c));
+    assertFalse("A B and an A instance should not be equal",
+                b.equals(a));
+    assertFalse("A B and a C instance should not be equal",
+                b.equals(c));
+    assertFalse("A C and an A instance should not be equal",
+                c.equals(a));
+    assertFalse("A C and a B instance should not be equal",
+                c.equals(b));
   }
 }
