@@ -85,6 +85,7 @@ public final class Time implements Comparable<Time> {
     // with the -XX:+DoEscapeAnalysis flag, though. As long as this is
     // not a profiled bottleneck we won't care much about all of that
     // here, though.
+    // The same applies to Duration.hashCode().
     return Long.valueOf(absoluteValue).hashCode();
   }
 
@@ -121,6 +122,41 @@ public final class Time implements Comparable<Time> {
      */
     public final long getTimeDifference() {
       return differenceValue;
+    }
+
+
+    /**
+     * Equality defined in terms of difference value.
+     *
+     * @param object Object to check for equality to this.
+     * @return True if object is a Duration with same difference
+     * value.
+     */
+    @Override
+    public boolean equals(final Object object) {
+      if (this == object) {
+        return true;
+      }
+      if (! (object instanceof Duration)) {
+        return false;
+      }
+      assert object != null; // Checked by instanceof above
+      final Duration other = (Duration) object;
+      // Direct access to the member ok because getTimeDifference()
+      // and differenceValue are both final.
+      return differenceValue == other.differenceValue;
+    }
+
+
+    /**
+     * Compute hash code based on the difference value.
+     *
+     * @return Hash code based on difference.
+     */
+    @Override
+    public int hashCode() {
+      // Note: see Time.hashCode().
+      return Long.valueOf(differenceValue).hashCode();
     }
   }
 
