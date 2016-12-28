@@ -229,4 +229,48 @@ public abstract class AbstractComparatorTest<Value> {
                      "high", createHighValue(),
                      LESS);
   }
+
+
+  /**
+   * A mid value should be reported as less than a high value.
+   */
+  @Test
+  public void MidShouldBeLessThanHigh() {
+    assertComparison("mid", createMidValue(),
+                     "high", createHighValue(),
+                     LESS);
+  }
+
+
+  /**
+   * A high value should be reported as greater than a low value.
+   */
+  @Test
+  public void HighShouldBeGreaterThanLow() {
+    assertComparison("high", createHighValue(),
+                     "low", createLowValue(),
+                     GREATER);
+  }
+
+
+  /**
+   * A high value should be reported as greater than a mid value.
+   */
+  @Test
+  public void HighShouldBeGreaterThanMid() {
+    assertComparison("high", createHighValue(),
+                     "mid", createMidValue(),
+                     GREATER);
+  }
+
+
+  /**
+   * A mid value should be reported as greater than a low value.
+   */
+  @Test
+  public void MidShouldBeGreaterThanLow() {
+    assertComparison("mid", createMidValue(),
+                     "low", createLowValue(),
+                     GREATER);
+  }
 }
