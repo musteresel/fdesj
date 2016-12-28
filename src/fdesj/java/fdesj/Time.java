@@ -46,7 +46,7 @@ public final class Time implements Comparable<Time> {
    * greater than 0 otherwise.
    */
   @Override
-  public int compareTo(Time other) {
+  public int compareTo(final Time other) {
     return Long.compare(absoluteValue, other.absoluteValue);
   }
 
