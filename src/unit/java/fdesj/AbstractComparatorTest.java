@@ -109,4 +109,124 @@ public abstract class AbstractComparatorTest<Value> {
     assertTrue("Self comparison of high value should return 0.",
                comparator.compare(high, high) == 0);
   }
+
+
+  /**
+   * A comparison (of integer values), used to make testing code more
+   * abstract.
+   */
+  private abstract class Comparison {
+    /**
+     * Description of the comparison done.
+     */
+    private final String description;
+
+
+    /**
+     * Construct.
+     *
+     * @param description Description of the comparison.
+     */
+    Comparison(final String description) {
+      this.description = description;
+    }
+
+
+    /**
+     * Describe this comparison.
+     *
+     * @return Description of the comparison.
+     */
+    public final String describe() {
+      return description;
+    }
+
+
+    /**
+     * Actual comparison.
+     *
+     * @param lhs Left hand side.
+     * @param rhs Right hand side.
+     * @return Result of comparing lhs and rhs.
+     */
+    public abstract boolean of(int lhs, int rhs);
+  }
+
+
+  /**
+   * Less than comparison.
+   */
+  private final Comparison LESS = new Comparison("less than") {
+      public boolean of(final int lhs, final int rhs) {
+        return lhs < rhs;
+      }
+    };
+
+
+  /**
+   * Equal to comparison.
+   */
+  private final Comparison EQUAL = new Comparison("equal to") {
+      public boolean of(final int lhs, final int rhs) {
+        return lhs == rhs;
+      }
+    };
+
+
+  /**
+   * Greater than comparison.
+   */
+  private final Comparison GREATER = new Comparison("greater than") {
+      public boolean of(final int lhs, final int rhs) {
+        return lhs > rhs;
+      }
+    };
+
+
+  /**
+   * Helper function to do actual comparisons and assert that they're
+   * true.
+   *
+   * Compares the result of the comparison done by the comparator
+   * under test using the passed in Comparison against 0.
+   *
+   * @param lhsDescription Description of the lhs value.
+   * @param lhs Left hand side value.
+   * @param rhsDescription Description of the rhs value.
+   * @param rhs Right hand side value.
+   * @param comparison Comparison used.
+   */
+  private void assertComparison(final String lhsDescription,
+                                final Value lhs,
+                                final String rhsDescription,
+                                final Value rhs,
+                                final Comparison comparison) {
+    final Comparator<Value> comparator = createComparator();
+    final int result = comparator.compare(lhs, rhs);
+    assertTrue(lhsDescription + " must be "
+               + comparison.describe() + " "
+               + rhsDescription + ".",
+               comparison.of(result, 0));
+  }
+
+  /**
+   * A low value should be reported as less than a mid value.
+   */
+  @Test
+  public void LowShouldBeLessThanMid() {
+    assertComparison("low", createLowValue(),
+                     "mid", createMidValue(),
+                     LESS);
+  }
+
+
+  /**
+   * A low value should be reported as less than a high value.
+   */
+  @Test
+  public void LowShouldBeLessThanHigh() {
+    assertComparison("low", createLowValue(),
+                     "high", createHighValue(),
+                     LESS);
+  }
 }
