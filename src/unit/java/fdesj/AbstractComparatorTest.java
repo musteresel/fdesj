@@ -4,6 +4,7 @@ package fdesj;
 import java.util.Comparator;
 import java.util.Objects;
 import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 
 /**
@@ -89,5 +90,23 @@ public abstract class AbstractComparatorTest<Value> {
     if (permitsNull) {
       comparator.compare(null, null);
     }
+  }
+
+
+  /**
+   * Test whether comparing a value with itself returns zero.
+   */
+  @Test
+  public void SelfComparisonShouldReturnZero() {
+    final Comparator<Value> comparator = createComparator();
+    final Value low = createLowValue();
+    final Value mid = createMidValue();
+    final Value high = createHighValue();
+    assertTrue("Self comparison of low value should return 0.",
+               comparator.compare(low, low) == 0);
+    assertTrue("Self comparison of mid value should return 0.",
+               comparator.compare(mid, mid) == 0);
+    assertTrue("Self comparison of high value should return 0.",
+               comparator.compare(high, high) == 0);
   }
 }
