@@ -52,6 +52,44 @@ public final class Time implements Comparable<Time> {
 
 
   /**
+   * Equality is defined by the absolute value of time.
+   *
+   * @param object Object to check for equality to this.
+   * @return True if the object is a Time with same absolute value.
+   */
+  @Override
+  public boolean equals(final Object object) {
+    if (object == this) {
+      return true;
+    }
+    if (! (object instanceof Time)) {
+      return false;
+    }
+    assert object != null; // Checked by the instanceof above
+    final Time other = (Time) object;
+    return absoluteValue == other.absoluteValue;
+  }
+
+
+  /**
+   * Compute a hash code from the absolute value of time.
+   *
+   * @return Hash code based on absolute value of time.
+   */
+  @Override
+  public int hashCode() {
+    // Note: This is for backwards compability, in Java 8 this could
+    // be written as Long.hashCode(absoluteValue) and would then not
+    // require an object allocation as the current solution does. The
+    // current solution *might* be optimized properly when compiled
+    // with the -XX:+DoEscapeAnalysis flag, though. As long as this is
+    // not a profiled bottleneck we won't care much about all of that
+    // here, though.
+    return Long.valueOf(absoluteValue).hashCode();
+  }
+
+
+  /**
    * Duration / time span.
    *
    * Used to enforce type safety.
