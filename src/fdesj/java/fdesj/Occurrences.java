@@ -14,33 +14,10 @@ import java.util.Collection;
  *
  * This interface also enforces implementing classes to be
  * iterable. The intention is to provide a most general means for
- * {@link Occurrences.Changes} implementations to remove occurrences.
+ * {@link OccurrencesChanges} implementations to remove occurrences.
  */
 public interface Occurrences<State>
   extends Iterable<Occurrence<State>> {
-  /**
-   * Deferred changes which can be applied to a collection of
-   * occurrences.
-   *
-   * This is used by events as a description of the changes they have
-   * on the global collection of event occurrences.
-   */
-  interface Changes<State> {
-    /**
-     * Apply the changes to the given occurrences, resulting in a new
-     * {@linkplain Occurrences collection of occurrences}.
-     *
-     * Calling this function multiple times with the same argument
-     * should produce equal results.
-     *
-     * @param occurrences The occurrences to which the changes will be
-     * applied.
-     * @return {@link Occurrences} with the changes applied.
-     */
-    Occurrences<State> applyTo(Occurrences<State> occurrences);
-  }
-
-
   /**
    * Get the next occurrence (the earliest one).
    *
