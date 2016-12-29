@@ -24,21 +24,21 @@ public class OccurrenceEqualityTest
   /**
    * One event object.
    */
-  public final Event eventOne = new Event() {};
+  public final Event<Object> eventOne = new Event<Object>() {};
 
 
   /**
    * Another event object.
    */
-  public final Event eventTwo = new Event() {};
+  public final Event<Object> eventTwo = new Event<Object>() {};
 
 
   /**
    * Provide an instance of kind A, with time one and event one.
    */
   @Override
-  public Occurrence createNewInstanceA() {
-    return new Occurrence(timeOne, eventOne);
+  public Occurrence<Object> createNewInstanceA() {
+    return new Occurrence<Object>(timeOne, eventOne);
   }
 
 
@@ -46,8 +46,8 @@ public class OccurrenceEqualityTest
    * Provide an instance of kind B, with time two and event one.
    */
   @Override
-  public Occurrence createNewInstanceB() {
-    return new Occurrence(timeTwo, eventOne);
+  public Occurrence<Object> createNewInstanceB() {
+    return new Occurrence<Object>(timeTwo, eventOne);
   }
 
 
@@ -55,7 +55,7 @@ public class OccurrenceEqualityTest
    * Provide an instance of kind C, with time one and event two.
    */
   @Override
-  public Occurrence createNewInstanceC() {
-    return new Occurrence(timeOne, eventTwo);
+  public Occurrence<Object> createNewInstanceC() {
+    return new Occurrence<Object>(timeOne, eventTwo);
   }
 }

@@ -5,7 +5,7 @@ package fdesj;
  * Test OccurrenceByTimeComparator.
  */
 public class OccurrenceByTimeComparatorTest
-  extends AbstractComparatorTest<Occurrence> {
+  extends AbstractComparatorTest<Occurrence<Object>> {
 
 
   public OccurrenceByTimeComparatorTest() {
@@ -14,25 +14,28 @@ public class OccurrenceByTimeComparatorTest
 
 
   @Override
-  public OccurrenceByTimeComparator createComparator() {
-    return new OccurrenceByTimeComparator();
+  public OccurrenceByTimeComparator<Object> createComparator() {
+    return new OccurrenceByTimeComparator<Object>();
   }
 
 
   @Override
-  public Occurrence createLowValue() {
-    return new Occurrence(new Time(0), new Event() {});
+  public Occurrence<Object> createLowValue() {
+    return new Occurrence<Object>(new Time(0),
+                                  new Event<Object>() {});
   }
 
 
   @Override
-  public Occurrence createMidValue() {
-    return new Occurrence(new Time(1231), new Event() {});
+  public Occurrence<Object> createMidValue() {
+    return new Occurrence<Object>(new Time(1231),
+                                  new Event<Object>() {});
   }
 
 
   @Override
-  public Occurrence createHighValue() {
-    return new Occurrence(new Time(4321123), new Event() {});
+  public Occurrence<Object> createHighValue() {
+    return new Occurrence<Object>(new Time(4321123),
+                                  new Event<Object>() {});
   }
 }

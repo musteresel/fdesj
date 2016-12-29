@@ -16,7 +16,8 @@ import java.util.Collection;
  * iterable. The intention is to provide a most general means for
  * {@link Occurrences.Changes} implementations to remove occurrences.
  */
-public interface Occurrences extends Iterable<Occurrence> {
+public interface Occurrences<State>
+  extends Iterable<Occurrence<State>> {
   /**
    * Deferred changes which can be applied to a collection of
    * occurrences.
@@ -24,7 +25,7 @@ public interface Occurrences extends Iterable<Occurrence> {
    * This is used by events as a description of the changes they have
    * on the global collection of event occurrences.
    */
-  interface Changes {
+  interface Changes<State> {
     /**
      * Apply the changes to the given occurrences, resulting in a new
      * {@linkplain Occurrences collection of occurrences}.
@@ -36,7 +37,7 @@ public interface Occurrences extends Iterable<Occurrence> {
      * applied.
      * @return {@link Occurrences} with the changes applied.
      */
-    Occurrences applyTo(Occurrences occurrences);
+    Occurrences<State> applyTo(Occurrences<State> occurrences);
   }
 
 
@@ -50,7 +51,7 @@ public interface Occurrences extends Iterable<Occurrence> {
    * @return Next (earliest) occurrence of an event, or null if there
    * is none.
    */
-  Occurrence nextOccurrence();
+  Occurrence<State> nextOccurrence();
 
 
   /**
@@ -60,7 +61,7 @@ public interface Occurrences extends Iterable<Occurrence> {
    * @return Collection of event occurrences happening at the
    * specified time.
    */
-  Collection<Occurrence> at(Time time);
+  Collection<Occurrence<State>> at(Time time);
 
 
   /**
@@ -71,7 +72,7 @@ public interface Occurrences extends Iterable<Occurrence> {
    * @return New Occurrences with both the occurrences from this
    * object as well as the given ones.
    */
-  Occurrences withNew(Iterable<Occurrence> occurrences);
+  Occurrences<State> withNew(Iterable<Occurrence<State>> occurrences);
 
 
   /**
@@ -82,7 +83,7 @@ public interface Occurrences extends Iterable<Occurrence> {
    * @return New Occurrences without the occurrences given as
    * parameter.
    */
-  Occurrences without(Iterable<Occurrence> occurrences);
+  Occurrences<State> without(Iterable<Occurrence<State>> occurrences);
 
 
   /**
@@ -94,5 +95,5 @@ public interface Occurrences extends Iterable<Occurrence> {
    *
    * @return Occurrences without (current) next occurrence.
    */
-  Occurrences withoutNextOccurrence();
+  Occurrences<State> withoutNextOccurrence();
 }

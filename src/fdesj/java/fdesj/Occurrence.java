@@ -11,7 +11,7 @@ import java.util.Objects;
  * specify the time when an event actually happens (or is scheduled to
  * do so).
  */
-public final class Occurrence {
+public final class Occurrence<State> {
   /**
    * The time of occurrence.
    */
@@ -21,7 +21,7 @@ public final class Occurrence {
   /**
    * The event which is occurring.
    */
-  public final Event event;
+  public final Event<State> event;
 
 
   /**
@@ -31,7 +31,7 @@ public final class Occurrence {
    * @param event Event which occurs.
    * @throws NullPointerException When time or event is null.
    */
-  public Occurrence(final Time time, final Event event) {
+  public Occurrence(final Time time, final Event<State> event) {
     this.time = Objects.requireNonNull(time, "time must not be null");
     this.event = Objects.requireNonNull(event,
                                         "event must not be null");

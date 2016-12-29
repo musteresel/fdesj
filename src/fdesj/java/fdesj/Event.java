@@ -4,5 +4,5 @@ package fdesj;
 /**
  * An event in the simulation.
  */
-public interface Event {
+public interface Event<State> {
 }

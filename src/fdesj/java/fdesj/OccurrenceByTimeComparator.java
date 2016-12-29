@@ -10,8 +10,8 @@ import java.util.Comparator;
  * Note that the events are completely ignored. This also means that
  * this comparator does not comply with Occurrence.equals().
  */
-public final class OccurrenceByTimeComparator
-  implements Comparator<Occurrence> {
+public final class OccurrenceByTimeComparator<State>
+  implements Comparator<Occurrence<State>> {
   /**
    * Compare the two occurrences based on their time.
    *
@@ -20,7 +20,8 @@ public final class OccurrenceByTimeComparator
    * @return Result of comparing times of the occurrences.
    */
   @Override
-  public int compare(final Occurrence lhs, final Occurrence rhs) {
+  public int compare(final Occurrence<State> lhs,
+                     final Occurrence<State> rhs) {
     return lhs.time.compareTo(rhs.time);
   }
 }

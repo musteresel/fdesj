@@ -9,6 +9,6 @@ public class EventTest
   @Test
   public void createAnonymous()
   {
-    new Event() {};
+    new Event<Object>() {};
   }
 }
