@@ -14,7 +14,7 @@ public final class Changes<State> {
   /**
    * Changes that act on the event list of the simulation.
    */
-  public final Occurrences.Changes toOccurrences;
+  public final Occurrences.Changes<State> toOccurrences;
 
 
   /**
@@ -24,7 +24,7 @@ public final class Changes<State> {
    * @param toOccurrences Changes to the event list.
    */
   public Changes(final StateChanges<State> toState,
-                 final Occurrences.Changes toOccurrences) {
+                 final Occurrences.Changes<State> toOccurrences) {
     // TODO: Decide whether null should be banned.
     this.toState = toState;
     this.toOccurrences = toOccurrences;
