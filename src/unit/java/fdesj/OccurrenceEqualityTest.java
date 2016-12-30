@@ -24,13 +24,13 @@ public class OccurrenceEqualityTest
   /**
    * One event object.
    */
-  public final Event<Object> eventOne = new Event<Object>() {};
+  public final Event<Object> eventOne = new DummyEvent();
 
 
   /**
    * Another event object.
    */
-  public final Event<Object> eventTwo = new Event<Object>() {};
+  public final Event<Object> eventTwo = new DummyEvent();
 
 
   /**

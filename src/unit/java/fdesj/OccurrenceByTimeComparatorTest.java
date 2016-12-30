@@ -22,20 +22,20 @@ public class OccurrenceByTimeComparatorTest
   @Override
   public Occurrence<Object> createLowValue() {
     return new Occurrence<Object>(new Time(0),
-                                  new Event<Object>() {});
+                                  new DummyEvent());
   }
 
 
   @Override
   public Occurrence<Object> createMidValue() {
     return new Occurrence<Object>(new Time(1231),
-                                  new Event<Object>() {});
+                                  new DummyEvent());
   }
 
 
   @Override
   public Occurrence<Object> createHighValue() {
     return new Occurrence<Object>(new Time(4321123),
-                                  new Event<Object>() {});
+                                  new DummyEvent());
   }
 }

@@ -7,8 +7,8 @@ import org.junit.Test;
 public class EventTest
 {
   @Test
-  public void createAnonymous()
+  public void CreateDummyEventShouldWork()
   {
-    new Event<Object>() {};
+    new DummyEvent();
   }
 }
